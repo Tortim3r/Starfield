@@ -1,7 +1,13 @@
 //your code here
 void setup()
 {
-	//your code here
+	size(800,800);
+	Particle[] dream = new Particle[100]
+	for(int i;i<dream.length;i++)
+	{
+		dream[i] = new Particle();
+	}
+
 }
 void draw()
 {
@@ -13,13 +19,14 @@ class NormalParticle
 }
 interface Particle
 {
-	//your code here
+	public void show();
+	public void move();
 }
-class OddballParticle //uses an interface
+class OddballParticle implements Particle //uses an interface
 {
 	//your code here
 }
-class JumboParticle //uses inheritance
+class JumboParticle implements Particle //uses inheritance
 {
 	//your code here
 }
