@@ -1,28 +1,29 @@
 //your code here
-NormalParticle dream;
+Particle[] dream;
 void setup()
 {
 	size(800,800);
 	
-	//Particle[] dream = new NormalParticle[100];
-	//for(int i;i<dream.length;i++)
-	//{
-		dream = new NormalParticle(400,400);
-	//}
+	dream = new Particle[100];
+	for(int i = 0;i<(dream.length);i++)
+	{
+		dream[i] = new NormalParticle(400,400);
+	}
+	dream[99] = new OddballParticle(400,400);
 
 }
 void draw()
 {
-	//for(int i;i<dream.length;i++)
-	//{
-		//dream[i].show;
-		//dream[i].move;
-		dream.show();
-		dream.move();
+	for(int i = 0;i<dream.length;i++)
+	{
+		dream[i].show();
+		dream[i].move();
+		//dream.show();
+		//dream.move();
 
-	//}
+	}
 }
-class NormalParticle
+class NormalParticle implements Particle
 {
 	double myX,myY,mySpeed,myAngle;
 	
@@ -34,12 +35,12 @@ class NormalParticle
 		myAngle = Math.random()*360;
 		
 	}
-	void show()
+	public void show()
 	{	
 		fill(255);
 		ellipse((float)(myX),(float)(myY),20,20);
 	}
-	void move()
+	 public void move()
 	{
 		myX += (Math.cos(myAngle)*mySpeed);
 		myY += (Math.sin(myAngle)*mySpeed);
@@ -47,16 +48,33 @@ class NormalParticle
 }
 interface Particle
 {
-	//public void show();
-	//public void move();
+	public void show();
+	public void move();
 }
 class OddballParticle implements Particle //uses an interface
 {
-	//your code here
+	double myX,myY;
+	
+	OddballParticle(double x,double y)
+	{
+		myX = x;
+		myY = y;;
+		
+	}
+	public void show()
+	{	
+		fill(255);
+		ellipse((float)(myX),(float)(myY),60,60);
+	}
+	 public void move()
+	{
+		myX += (float)(Math.random()*6)-3;
+		myY += (float)(Math.random()*6)-3;
+	}
 }
-class JumboParticle implements Particle //uses inheritance
+class JumboParticle //extends NormalParticle //uses inheritance
 {
-	//your code here
+	
 }
 
  
